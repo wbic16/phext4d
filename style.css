@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+ul {
+	margin: 0;
+	padding-left: 1rem;
+}
+
+#grid-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    cursor: grab;
+    background: #fff;
+}
+
+#grid-container.grabbing {
+    cursor: grabbing;
+}
+
+#grid {
+    position: absolute;
+    transform-origin: 0 0;
+    width: 150000px; /* GRID_SIZE * CELL_SIZE */
+    height: 150000px;
+    background-image:
+		linear-gradient(to right, #eee 1px, transparent 1px),
+		linear-gradient(to bottom, #eee 1px, transparent 1px);
+    background-size: 150px 150px;
+    background-position: -1px -1px;
+	user-select: none;
+}
+
+.scroll {
+    position: absolute;
+    width: 145px;
+    height: 145px;
+    background: #f9f3e6;
+    border: 1px solid #dcc;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    overflow: hidden;
+	word-break: break-all;
+    box-sizing: border-box;
+    margin: 2px;
+}
+
+#scroll-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+}
+
+#scroll-content {
+	overflow-y: scroll;
+	resize: none;
+	padding: .3rem;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+#modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-buttons {
+    margin-top: 1rem;
+    display: flex;
+    gap: .5rem;
+    justify-content: flex-end;
+}
+
+button {
+    padding: .5rem 1.5rem;
+    border-radius: .2rem;
+    border: none;
+    cursor: pointer;
+}
+
+button.primary {
+    background: #4a90e2;
+    color: #fff;
+}
+
+button.danger {
+    background: #e74c3c;
+    color: #fff;
+}
+
+#instructions-display, #coordinates-display {
+	position: fixed;
+	background: rgba(255,255,255,0.8);
+    padding: .5rem 1rem;
+    border-radius: 4px;
+}
+
+#instructions-display {
+    bottom: 1rem;
+    left: 1rem;
+}
+
+#coordinates-display {
+	top: 1rem;
+    left: 1rem;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+	<script src="main.js" defer></script>
+</head>
+<body>
+    <div id="grid-container">
+        <div id="grid"></div>
+    </div>
+    
+    <div id="instructions-display">
+		<ul>
+			<li>Double-tap to create a scroll.</li>
+			<li>Tap on a scroll to edit or delete it.</li>
+			<li>Drag on the grid to move around.</li>
+		</ul>
+	</div>
+	<div id="coordinates-display"></div>
+
+    <div id="modal-overlay"></div>
+    <div id="scroll-modal">
+		<div id="scroll-coordinates"></div>
+        <textarea id="scroll-content" rows="8" cols="35"></textarea>
+        <div class="modal-buttons">
+            <button onclick="delete_scroll()" class="danger">Delete</button>
+            <button onclick="close_modal()">Cancel</button>
+            <button onclick="save_scroll()" class="primary">Save</button>
+        </div>
+    </div>
+</body>
+</html>
