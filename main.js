@@ -7,12 +7,16 @@ let start_pos = { x: 0, y: 0 };
 let scrolls = new Map();
 let current_scroll = null;
 
-const grid = document.getElementById('grid');
-const container = document.getElementById('grid-container');
-const modal = document.getElementById('scroll-modal');
-const modal_overlay = document.getElementById('modal-overlay');
-const coordinates_display = document.getElementById('coordinates-display');
-const scroll_content = document.getElementById('scroll-content');
+function dgid(id) {
+	return document.getElementById(id);
+}
+
+const grid = dgid('grid');
+const container = dgid('grid-container');
+const modal = dgid('scroll-modal');
+const modal_overlay = dgid('modal-overlay');
+const coordinates_display = dgid('coordinates-display');
+const scroll_content = dgid('scroll-content');
 
 function initialize_grid() {
 	grid_offset.x = 0;
@@ -58,7 +62,7 @@ function render_scroll(x, y, content) {
 
 function open_modal(x, y, content = '') {
 	current_scroll = { x, y };
-document.getElementById('scroll-coordinates').innerHTML = `<span style="color: #888">1.1.1/1.1.1/1.</span>${x}.${y}`;
+	dgid('scroll-coordinates').innerHTML = `<span style="color: #888">1.1.1/1.1.1/1.</span>${x}.${y}`;
 scroll_content.value = content;
 modal.style.display = 'block';
 modal_overlay.style.display = 'block';
@@ -72,12 +76,15 @@ current_scroll = null;
 }
 
 function save_scroll() {
-const content = document.getElementById('scroll-content').value.trim();
-if (content && current_scroll) {
-	scrolls.set(`${current_scroll.x},${current_scroll.y}`, content);
-	render_visible_cells();
-}
-close_modal();
+  const content = dgid('scroll-content').value.trim();
+  if (content && current_scroll) {
+	  scrolls.set(`${current_scroll.x},${current_scroll.y}`, content);
+		const coordinate = `1.1.1/1.1.1/1.${current_scroll.x}.${current_scroll.y}`;
+		const push_url = `http://localhost:1337/api/v2/update?p=index&c=${coordinate}&s=${content}`;
+		fetch(push_url);
+	  render_visible_cells();
+  }
+  close_modal();
 }
 
 function delete_scroll() {
